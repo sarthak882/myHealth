@@ -84,7 +84,7 @@ p {
     font-family: lexend;
     color:white;
     text-align: center;
-    line-height: 60px;
+    line-height: 58px;
     /* float: left; */
     /* padding-left: 5ch; */
 }
@@ -124,11 +124,15 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  /* background-color: #092f5c; */
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+th {
+  background-color: #062141;
 }
+/* tr:nth-child(odd) {
+  background-color: #203145;
+} */
 
 </style>
 
@@ -159,16 +163,16 @@ tr:nth-child(even) {
 
             <div class="data" style="text-decoration:underline; color:dodgerblue">
             {{recordCount}} records in database.</div>
-            <br>
+            <!-- <br> -->
             
             
                 <div class="data" style="align-items: center;">
                     <table>
                         <tr>
-                          <th>hospitalName</th>
-                          <th>category</th>
-                          <th>description</th>
-                          <th>date_Time</th>
+                          <th>Hospital</th>
+                          <th>Category</th>
+                          <th>Description</th>
+                          <th>Date / Time</th>
                         </tr>
                         <br>
             {% for rec in records %}

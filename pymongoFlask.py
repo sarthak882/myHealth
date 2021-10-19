@@ -8,7 +8,7 @@ from pprint import pprint
 IST = datetime.timedelta(hours=5, minutes=30)
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "URI"
+app.config["MONGO_URI"] = "mongodb+srv://Sarthak:sarthak-1234@cluster0.ugso6.mongodb.net/test2"
 cluster = PyMongo(app, ssl_cert_reqs=ssl.CERT_NONE)
 db = cluster.db
 patients = db.Patients
