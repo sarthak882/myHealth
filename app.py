@@ -36,5 +36,32 @@ def index():
     else:
         return render_template ('index.html')
 
+@app.route('/drlogin',methods=['POST','GET'])
+def dr_login():
+    if request.method == 'POST':
+        # do stuff when the form is submitted
+        # redirect to end the POST handling
+        # the redirect can be to the same route or somewhere else
+        try:
+            inputID = request.form['loginID']
+            try:
+                name = pymongoFlask.getDrName(inputID)
+                # print(profile)
+                try:                
+                    patients = pymongoFlask.patientsByDR(inputID)            
+                except:
+                    patients = ""
+                
+                return render_template('drprofile.html', ID=inputID, name=name, patients=patients)
+
+            except:
+                return render_template('404.html', ID=inputID)
+                # return("Somewhere, something went wrong.")
+        except(ValueError):
+            return render_template('404value.html')
+
+    # show the form, it wasn't submitted
+    return render_template('drlogin.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
