@@ -78,7 +78,9 @@ def patientsByDR(_id):
         #pprint(report)
         rID = report['_id']
         #pprint(patients.find_one({"records": rID}))
-        patientss.append((patients.find_one({"records": rID})['_id']))
+        p = patients.find_one({"records": rID})
+        patientss.append(dict([ ('_id', p['_id']), ('name', p['name']), ('date', report['date']) ]))
+        #patientss.append((patients.find_one({"records": rID})['_id']))
     
     return(patientss)
 
@@ -89,7 +91,7 @@ def main():
     print("hellooooo")
     # xy = findPatient()
     # print(xy['name'])
-    print(patientsByDR("DR001"))
+    pprint(patientsByDR("DR001"))
 
 if __name__ == "__main__":
     main()
