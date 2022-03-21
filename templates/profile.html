@@ -98,17 +98,14 @@ a {
 a:link {
   color: inherit;
 }
-
 /* visited link */
 a:visited {
   color: inherit;
 }
-
 /* mouse over link */
 a:hover {
   color: inherit;
 }
-
 /* selected link */
 a:active {
   color: inherit;
@@ -118,22 +115,18 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  font-size: 30px;
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-  /* background-color: #092f5c; */
 }
 
 th {
   background-color: #062141;
 }
-/* tr:nth-child(odd) {
-  background-color: #203145;
-} */
-
 </style>
 
 <body>
@@ -144,28 +137,24 @@ th {
         <span class="my">my</span>Health <br>
         </a>
     </h1>
-
     <h2>
         Here's your data.
     </h2>
 <br>
     <div class="formStuff">
-        Name:<div class="data">{{name}}</div>
+        Name:<div class="data">{{profile.name}}</div>
         <br>
-        Age:<div class="data">{{age}}</div>
+        Age:<div class="data">{{profile.age}}</div>
         <br>
-        Location:<div class="data">{{location}}</div>
+        Location:<div class="data">{{profile.location}}</div>
         <br>
-        Blood Group:<div class="data">{{bloodGroup}}</div>
+        Blood Group:<div class="data">{{profile.bloodGroup}}</div>
         <br>
 
-        {% if recordCount > 0 %}
+        {% if profile.recordCount > 0 %}
 
             <div class="data" style="text-decoration:underline; color:dodgerblue">
-            {{recordCount}} records in database.</div>
-            <!-- <br> -->
-            
-            
+            {{profile.recordCount}} records in database.</div>
                 <div class="data" style="align-items: center;">
                     <table>
                         <tr>
@@ -173,40 +162,31 @@ th {
                           <th>Category</th>
                           <th>Description</th>
                           <th>Date / Time</th>
+                          <th>Doctor</th>
                         </tr>
                         <br>
-            {% for rec in records %}
+            {% for rec in profile.records %}
                         <br>
                         <tr>
                           <td>{{rec['hospitalName']}}</td>
                           <td>{{rec['category']}}</td>
                           <td>{{rec['description']}}</td>
                           <td>{{rec['date']}}</td>
+                          <td>{{rec['drName']}}</td>
                         </tr>
-                     
-
             {% endfor %}
-        </table>
-                
+        </table>       
     </div>
     
         {% else %}
-
             <div class="data" style="text-decoration:underline; color: dodgerblue">
                 No records in database.</div>
-
         {% endif %}
         
     </div>
-
     <div class="">
-
-
     </div>
-
     <br><br><br><br><br>
     </div>
-    
-
 </body>
 </html>

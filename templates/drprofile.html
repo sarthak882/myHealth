@@ -1,66 +1,72 @@
 <body>
-<div class="container MY-2">
-    <b> ID:</b><div class="data">{{ID}}</div>
-    <b> Name:</b><div class="data">{{name}}</div>
+    <div class="container MY-2">
+        <b> ID:</b><div class="data">{{profile.id}}</div>
+        <b> Name:</b><div class="data">{{profile.name}}</div>
+        
+        <h4><u>PATIENTS LIST</u></h4>
     
-    <h4><u>PATIENTS LIST</u></h4>
+    
+    <div class="data" style="align-items: center;">
+        <table>
+            <tr>
+              <th>SNo</th>
+              <th>Patient ID</th>
+              <th>Patient Name</th>
+              <th>Date / Time</th>
+            </tr>
+          {% for pat in profile.patients %}
+               <tr>
+                    <td>{{loop.index}}</td>
+                    <td> <a href="{{ url_for('pprofile', id=pat['_id']) }}">  {{pat['_id']}} </a> </td>
+                   
+                    <td>{{pat['name']}}</td>
+                    <td>{{pat['date']}}</td>
+           {% endfor %}
+        </table>
+    </div>
+    </div>
+    </body>
 
+    <form action="/" name="patientLoginFORM" method="POST">
+      <input type="text" id="login" name="loginID">      
+    </form>
 
-<div class="data" style="align-items: center;">
-    <table>
-        <tr>
-          <th>SNo</th>
-          <th>Patient ID</th>
-          <th>Patient Name</th>
-          <th>Date / Time</th>
-        </tr>
-      {% for pat in patients %}
-           <tr>
-                <td>{{loop.index}}</td>
-                <td> <a href="{{url_for('index')}}">{{pat['_id']}}</td>
-                <td>{{pat['name']}}</td>
-                <td>{{pat['date']}}</td>
-       {% endfor %}
-    </table>
-</div>
-</div>
-</body>
-<style>
-.container{
-    font-size: 80px;
-    color : black;
-    text-align: center;
-}
-
-body{
-    background-color: #161920;
-}
-
-h4{
-    color :  #7733ff;
-}
-
-.data{
-    font-weight: normal;
-}
-
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  td, th {
-    border: 2px solid #666666;
-    text-align: left;
-    padding: 18px;
-    text-align: center;
-    font-size: 30px;
-    /* background-color: #092f5c; */
-  }
-  
-  th {
-    background-color: #062141;
-  }
-
-</style>
+    <style>
+    .container{
+        font-size: 80px;
+        color : black;
+        text-align: center;
+    }
+    
+    body{
+        background-color: #161920;
+    }
+    
+    h4{
+        color :  #7733ff;
+    }
+    
+    .data{
+        font-weight: normal;
+    }
+    
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 2px solid #666666;
+        text-align: left;
+        padding: 18px;
+        text-align: center;
+        font-size: 30px;
+        /* background-color: #092f5c; */
+      }
+      
+      th {
+        background-color: #062141;
+      }
+    
+    </style>
