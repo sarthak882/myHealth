@@ -1,5 +1,5 @@
 from time import strftime
-from flask import Flask, jsonify
+from flask import Flask, jsonify, abort
 from flask_pymongo import PyMongo
 import datetime
 import ssl
@@ -35,15 +35,13 @@ def addNewRecord(ID, hospital, category, description, currentTime = datetime.dat
     return newRecord.inserted_id
 
 def findReports(ID):
-    data = patients.find_one_or_404({'_id':ID})['records']  #array
+    recData = patients.find_one_or_404({'_id':ID})['records']  #array
     reportz = []
-    for reportID in data:
+    for reportID in recData:
         reportz.append(reports.find_one_or_404({'_id': reportID}))
     for i in reportz:
         drName = getDrName(i['drID'])
         i['drName']=drName
-        #i.append({'dName':dName})
-        pass
         
     #print(type(reportz))
     return reportz
@@ -84,6 +82,77 @@ def patientsByDR(_id):
     
     return(patientss)
 
+def patient(_id):
+    profile = dict()
+    #ID, Name, Age, BloodGroup, Location, RecordCount, firstName, lastName, Records
+    profile['id'] = _id
+    try:
+        print("Inside first TRY block")
+        p = findPatient(_id)
+        print("Found patient")
+        profile['age'] = p['age']
+        print("Age")
+        profile['recordCount'] = p['recordCount']
+        profile['location'] = p['location']
+        profile['bloodGroup'] = p['bloodGroup']
+        profile['name'] = profile['firstName'] = p['name']
+        profile['lastName'] = ""
+        if ' ' in profile['name']:
+            profile['firstName'], profile['lastName'] = p['name'].split(None, 1)
+        
+        print("Assigned variables to p")
+
+        try:
+            print("Looking for reports")
+            profile['records'] = findReports(_id)
+        except:
+            profile['records'] = ""
+
+        print("Found patient END")
+        pprint(profile)
+        return(profile)
+    except:
+        print("EXCEPTION 404")
+        abort(404)
+
+def doctor(_id):
+    profile = dict()
+    profile['id'] = _id
+    try:
+        print("Searching Doctor ID")
+        profile['name'] = getDrName(_id)
+        try:
+            profile['patients'] = patientsByDR(_id)
+        except:
+            print("Couldn't find patients")
+            profile['patients'] = ""
+        
+        print("Found doctor")
+        pprint(profile)
+        return (profile)
+    except:
+        print("ABORTING")
+        abort(404)
+
+# <td> <a href="{{url_for('index', id= pat['_id'])}}"> {{pat['_id']}}</td>
+
+
+# profile = pymongoFlask.findPatient(inputID)
+# # print(profile)
+# firstName = profile['name']
+# lastName = ""
+# if ' ' in profile['name']:
+#     firstName, lastName = profile['name'].split(None, 1)
+
+# try:                
+#     records = pymongoFlask.findReports(inputID)            
+# except:
+#     records = ""
+# print("Found patient")
+# return render_template('profile.html', ID=inputID, age=profile['age'], name=profile['name'], location=profile['location'], 
+#                                         bloodGroup=profile['bloodGroup'], recordCount=profile['recordCount'],
+#                                         firstName=firstName, lastName=lastName, records=records)
+
 
 
 def main():
@@ -91,7 +160,8 @@ def main():
     print("hellooooo")
     # xy = findPatient()
     # print(xy['name'])
-    pprint(patientsByDR("DR001"))
+    pprint(patient(882))
+    # pprint(patientsByDR("DR001"))
 
 if __name__ == "__main__":
     main()
