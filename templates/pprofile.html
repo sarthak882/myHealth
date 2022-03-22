@@ -127,6 +127,72 @@ td, th {
 th {
   background-color: #062141;
 }
+
+.popup .overlay{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 200vw;
+  height: 200vh;
+  background: rgba(0,0,0,0.7);
+  z-index: 1;
+  display: none;
+  
+  
+}
+
+.popup .content{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0);
+  background: #fff;
+  width: 650px;
+  height: 620px;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #161920;
+
+}
+
+.popup .close-btn{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: #222;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.popup.active .overlay{
+    display: block;
+}
+.popup.active .content{
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%,-50%) scale(1);
+     
+}
+
+.container2{
+  text-align: right; 
+  line-height: 1em;
+  margin: 0;
+}
+
+.btn btn-dark{
+  height:400px;
+    width:200px;
+
+}
+
 </style>
 
 <body>
@@ -188,5 +254,32 @@ th {
     </div>
     <br><br><br><br><br>
     </div>
+    <div class="popup" id="popup-1">
+      <div class="overlay"></div>
+      <div class="content">
+      <div class="close-btn" onclick= "togglePopup()">&times;</div>
+
+      <h1>New Record</h1>
+      <p>
+       HOSPITAL NAME<br>
+       <input type="text" placeholder="Enter Name">
+       <br><br>CATEGORY<br>
+       <input type="text" placeholder="Enter Category">
+       <br><br>DESCRIPTION<br>
+       <input type="text" placeholder="Enter Description" size="50">
+       <br><br>
+       <button type="submit" class="btn btn-dark">SUBMIT</button>
+
+      </p>
+      </div>
+     </div>
+     <div class="container2">
+     <button type="button" class="btn btn-dark" onclick="togglePopup()">ADD RECORD</button>
+     </div>
+<script> 
+ function togglePopup(){
+   document.getElementById("popup-1").classList.toggle("active");
+ }
+</script>
 </body>
 </html>
