@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/890240709502832640/890255447163027527/unknown.png">
+    <!-- Adding Custom Stylesheet! -->
+    <!-- <link href="stylesheet.css" type="text/css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Your Profile</title>
@@ -28,7 +30,6 @@ body{
        url('../fonts/lexend-deca-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
        url('../fonts/lexend-deca-v10-latin-regular.svg#LexendDeca') format('svg'); /* Legacy iOS */
 }
-
 
 h1 {
     /* font-weight: bold; */
@@ -158,11 +159,11 @@ th {
 }
 
 .popup .close-btn{
-  position: absolute;
+  /* position: absolute;
   right: 20px;
   top: 20px;
   width: 30px;
-  height: 30px;
+  height: 30px; */
   background: #222;
   color: #fff;
   font-size: 25px;
@@ -252,30 +253,38 @@ th {
     </div>
     <div class="">
     </div>
-    <br><br><br><br><br>
+    <!-- <br><br><br><br><br> -->
     </div>
+
+    <!-- New Record Form -->
+    <form action="{{ url_for( 'pprofile', id=profile.id) }}" name="newRecordForm" method="POST">
     <div class="popup" id="popup-1">
       <div class="overlay"></div>
       <div class="content">
-      <div class="close-btn" onclick= "togglePopup()">&times;</div>
+      <div class="btn close-btn" onclick= "togglePopup()">&times;</div>
 
       <h1>New Record</h1>
       <p>
        HOSPITAL NAME<br>
-       <input type="text" placeholder="Enter Name">
+       <input type="text" name="hospitalName" placeholder="Enter Name">
        <br><br>CATEGORY<br>
-       <input type="text" placeholder="Enter Category">
+       <input type="text" name="category" placeholder="Enter Category">
        <br><br>DESCRIPTION<br>
-       <input type="text" placeholder="Enter Description" size="50">
+       <input type="text" name="description" placeholder="Enter Description" size="50">
+       <br><br>DOCTOR ID<br>
+       <input type="text" name="drID" placeholder="Enter Doctor ID">
        <br><br>
-       <button type="submit" class="btn btn-dark">SUBMIT</button>
+       <button type="submit" onclick="{{ url_for( 'pprofile', id=profile.id) }}" class="btn btn-dark">SUBMIT</button>
 
       </p>
       </div>
      </div>
      <div class="container2">
+        <h2>
      <button type="button" class="btn btn-dark" onclick="togglePopup()">ADD RECORD</button>
+        </h2>
      </div>
+    </form>
 <script> 
  function togglePopup(){
    document.getElementById("popup-1").classList.toggle("active");
