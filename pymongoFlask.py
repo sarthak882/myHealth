@@ -25,10 +25,10 @@ def findPatient(ID):
     patient = patients.find_one_or_404({'_id':ID})
     return patient
 
-def addNewRecord(ID, hospital, category, description, currentTime = datetime.datetime.now()):
+def addRecord(ID, hospital, category, description, drID, currentTime = datetime.datetime.now()):
     # Inserting New Record
     # currentTime = datetime.datetime.now()
-    newRecord = reports.insert_one({'hospitalName': hospital, 'category': category, 'description': description, 'date': currentTime})
+    newRecord = reports.insert_one({'hospitalName': hospital, 'category': category, 'description': description, 'drID': drID, 'date': currentTime})
     patients.update_one({'_id': ID}, {'$inc': {'recordCount': 1}, '$push': {'records': newRecord.inserted_id}}, upsert=True)
     # Time from created object
     # currentTime = newRecord['_id'].generation_time + IST
@@ -60,8 +60,6 @@ def createPatient(_id, name, age, location, bloodGroup):
     # Check for ID must not be already existing
     patients.insert_one({"_id": _id, "name": name, "age": age, "location": location, "bloodGroup": bloodGroup, "recordCount": 0})
 
-def deleteReport(ID):
-    pass
 
 def deletePatient(_id):
     # Delete reports
@@ -87,11 +85,11 @@ def patient(_id):
     #ID, Name, Age, BloodGroup, Location, RecordCount, firstName, lastName, Records
     profile['id'] = _id
     try:
-        print("Inside first TRY block")
+        # print("Finding patient...")
         p = findPatient(_id)
         print("Found patient")
         profile['age'] = p['age']
-        print("Age")
+        # print("Age")
         profile['recordCount'] = p['recordCount']
         profile['location'] = p['location']
         profile['bloodGroup'] = p['bloodGroup']
@@ -100,16 +98,16 @@ def patient(_id):
         if ' ' in profile['name']:
             profile['firstName'], profile['lastName'] = p['name'].split(None, 1)
         
-        print("Assigned variables to p")
+        # print("Assigned variables to p")
 
         try:
-            print("Looking for reports")
+            print("Looking for reports..")
             profile['records'] = findReports(_id)
         except:
             profile['records'] = ""
 
-        print("Found patient END")
-        pprint(profile)
+        print("Returning Patient")
+        # pprint(profile)
         return(profile)
     except:
         print("EXCEPTION 404")
@@ -128,7 +126,7 @@ def doctor(_id):
             profile['patients'] = ""
         
         print("Found doctor")
-        pprint(profile)
+        # pprint(profile)
         return (profile)
     except:
         print("ABORTING")
@@ -154,7 +152,6 @@ def doctor(_id):
 #                                         firstName=firstName, lastName=lastName, records=records)
 
 
-
 def main():
     #pprint(findReports(882))
     print("hellooooo")
@@ -167,11 +164,9 @@ if __name__ == "__main__":
     main()
     pass
 
-
 ##
 ## JUST USE strftime('%Y/%m/%d %I:%M:%S %p')
 ##
-
 
 def dDate(dtime):
     return str(dtime.date())

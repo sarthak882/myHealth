@@ -1,5 +1,4 @@
 # from cProfile import Profile
-from email import message
 import pprint
 from flask import Flask, render_template, jsonify, request
 import pymongoFlask
@@ -52,18 +51,28 @@ def dr_login():
 
 @app.route('/pprofile',methods=['POST','GET'])
 def pprofile():
+
     id = request.args['id']
     print(id)
-    print(type(id))
-    intID =int(id)
+    id = int(id)
+
+    if (request.method=='POST'):
+        add_record(id)
+
     try:
-        profile = pymongoFlask.patient(intID)
+        profile = pymongoFlask.patient(id)
     except:
         print("Couldn't find patient")
         return render_template('404.html', ID=id)
-    print(type(profile))
     print("Rendering Template")
-    return render_template('profile.html', profile = profile)
+    return render_template('pprofile.html', profile = profile)
+    
+def add_record(id):
+    print("Inside add_record() function")
+    rec = pymongoFlask.addRecord(ID=id, hospital=request.form['hospitalName'], category=request.form['category'], description=request.form['description'], drID=request.form['drID'])
+    print("New record added!")
+    print(rec)
+    pass
 
 if __name__ == '__main__':
     app.run(debug=True)
