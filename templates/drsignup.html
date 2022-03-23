@@ -1,0 +1,197 @@
+<style>
+    body {
+      background-color: #161920;
+      text-align: center;
+    }
+    
+    h1{
+      color: red;
+      text-align: center;
+      font-size: 80px;
+    }
+    
+    .container{
+      color: black;
+      font-size: 25px;
+    }
+    
+    #textboxid
+    {
+        height:40px;
+        font-size:14pt;
+    }
+    
+    #btn{
+      border: none;
+      background-color: red;
+      border-radius: 40px;
+      padding: 10px;
+      color: white;
+      width: 120px;
+      margin-top: 15px;
+    }
+    </style>
+    <body>
+      <div class="container">
+                
+                 </div>
+        <h1><b>Sign Up<b></h1>
+          <b><b><br>FIRST NAME<br>
+          <select name="prefixname" class="selectpicker"  data-width="100%" id="prefixname">
+            <option value="Dr">Dr</option>
+            <option value="Dt">Dt</option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            </select>	
+        
+        <input type="text" placeholder="Enter first name" name="fname" id="textboxid" required>
+    
+        <b><br><br>LAST NAME<b><br>
+        <input type="text" placeholder="Enter last name" name="lname" id="textboxid" required>
+        
+        <br><br><br>
+        <div class="row">
+          <div class="col-md-6 form-group">
+                  <select name="gender" class="selectpicker"  data-width="100%" id="gender">
+  <option value="" selected="selected">Select Gender*</option>
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+  </select>				          
+  </div>
+        <br><br>
+  
+        EMAIL ID<br>
+        <input type="email" id="email" placeholder="Enter your email" name="email">
+  
+        <br><br><br>
+        <div class="col-md-6 form-group">
+                  <select name="specialisation_id" class="selectpicker"  data-width="100%" data-live-search="true" id="specialisation_id">
+  <option value="" selected="selected">Select Specialisation*</option>
+  <option value="92">Anaesthesia & Pain Medicine</option>
+  <option value="113">Anaesthesiology</option>
+  <option value="1">Anesthesiologist</option>
+  <option value="80">Arthroscopic Surgeon And Total Joint Replacement Surgeon</option>
+  <option value="83">Audiologist/ Speech Therapist</option>
+  <option value="53">Bariatric Surgeon and Obesity Surgeon</option>
+  <option value="94">Cardio Thoracic and Vascular Surgery</option>
+  <option value="2">Cardiologist</option>
+  <option value="78">Cardiologist and General Physician</option>
+  <option value="45">Cardiovascular and Thoracic Surgeon</option>
+  <option value="93">Critical Care & ICU</option>
+  <option value="3">Dentist</option>
+  <option value="110">Department of Physiotherapy and Rehabilitation</option>
+  <option value="42">Dermatologist and Cosmetologist</option>
+  <option value="117">Diabetic Foot Specialist</option>
+  <option value="85">Diabetic Foot Surgeon</option>
+  <option value="57">Diabetologist</option>
+  <option value="31">Diabetologist/Endocrinologist</option>
+  <option value="35">Dietician and Nutritionist</option>
+  <option value="95">Emergency & Trauma Services</option>
+  <option value="86">Endocrine Surgeon</option>
+  <option value="5">Endocrinologist</option>
+  <option value="36">ENT Specialist</option>
+  <option value="96">Fetal Medicine</option>
+  <option value="6">Gastroenterologist</option>
+  <option value="71">General and Laporoscopic Surgeon</option>
+  <option value="28">General Physician</option>
+  <option value="54">General Surgeon</option>
+  <option value="126">Genetics</option>
+  <option value="8">Geriatrician</option>
+  <option value="74">Gynecological Oncosurgeon</option>
+  <option value="10">Gynecologist</option>
+  <option value="40">Gynecologist/Obstetrician</option>
+  <option value="98">Haematopoietic Stem Cell Transplant</option>
+  <option value="63">Hair Restoration Surgeon</option>
+  <option value="11">Hematologist</option>
+  <option value="99">Hematology</option>
+  <option value="62">Hepatologist and Gastroenterologist</option>
+  <option value="46">Hernia and Piles Specialist</option>
+  <option value="100">Holistic Medicine/Psychology</option>
+  <option value="13">Infectious diseases</option>
+  <option value="26">Internal Medicine/Physician</option>
+  <option value="59">IVF/Assisted Reproduction</option>
+  <option value="101">Laboratory Services</option>
+  <option value="65">Laproscopic Surgeon</option>
+  <option value="61">Liver and Hepatobiliary Surgeon</option>
+  <option value="81">Neonatologist</option>
+  <option value="32">Nephrologist</option>
+  <option value="102">Neuroanaesthesia and Neuro critical care</option>
+  <option value="103">Neurointerventional Surgery</option>
+  <option value="14">Neurologist</option>
+  <option value="33">Neuropsychologist</option>
+  <option value="50">Neurosurgeon/Brain and Spine Neurosurgeon</option>
+  <option value="15">Nuclear Medicine</option>
+  <option value="16">Obstetrician</option>
+  <option value="17">Oncologist</option>
+  <option value="58">Oncologist/Cancer Specialist</option>
+  <option value="18">Ophthalmologist</option>
+  <option value="34">Opthalmology</option>
+  <option value="68">Oral and Maxillo Facial Surgeon</option>
+  <option value="104">Organ Transplant</option>
+  <option value="43">Orthopedic Surgeon</option>
+  <option value="116">Orthopedics and Spine Care</option>
+  <option value="25">Orthopedist</option>
+  <option value="105">Paediatric Cardiology & Cardiac Surgery</option>
+  <option value="121">Paediatric Hemato Oncologist</option>
+  <option value="75">Paediatric Orthopaedic Surgeon</option>
+  <option value="125">Pediatric & Neonatal Surgeon, Pediatric Laparoscopist & Urologist</option>
+  <option value="123">Pediatric and Neonatal Surgeon</option>
+  <option value="89">Pediatric Cardiac Surgeon</option>
+  <option value="70">Pediatric Cardiologist</option>
+  <option value="76">Pediatric Cardiology</option>
+  <option value="90">Pediatric Endocrinologist</option>
+  <option value="82">Pediatric Gastroenterologist</option>
+  <option value="120">Pediatric Hemato Oncologist</option>
+  <option value="73">Pediatric Hepatologist and Gastroenterologist</option>
+  <option value="124">Pediatric Laparoscopist & Urologist</option>
+  <option value="69">Pediatric Liver Transplant Surgeon</option>
+  <option value="64">Pediatric Medical Oncologist</option>
+  <option value="91">Pediatric Nephrologist</option>
+  <option value="66">Pediatric Neurologist</option>
+  <option value="88">Pediatric Neurologist Rehabilitation Specialist</option>
+  <option value="87">Pediatric Ophthalmologist</option>
+  <option value="84">Pediatric Orthopedic Surgeon</option>
+  <option value="48">Pediatric Surgeon/Child Specialist</option>
+  <option value="122">Pediatric Urologist</option>
+  <option value="19">Pediatrician</option>
+  <option value="52">Plastic and Cosmetic Surgeon</option>
+  <option value="112">Plastic, Aesthetic and Reconstructive Surgery</option>
+  <option value="115">Plastic, Aesthetic and Reconstructive Surgery</option>
+  <option value="20">Psychiatrist</option>
+  <option value="55">Psychologist</option>
+  <option value="51">Pulmologist/Chest Physician/Critical Care</option>
+  <option value="56">Radiation Oncologist</option>
+  <option value="21">Radiologist</option>
+  <option value="114">Renal Sciences</option>
+  <option value="111">Renal Transplant and Urology</option>
+  <option value="106">Reproductive Medicine</option>
+  <option value="107">Respiratory Critical Care & Sleep medicine</option>
+  <option value="27">Rheumatologist</option>
+  <option value="79">Rheumatologist And MD - General Medicines</option>
+  <option value="108">Rheumatology & Clinical Immunology</option>
+  <option value="109">Scoliosis Surgery</option>
+  <option value="77">Spine and Pain Specialist</option>
+  <option value="60">Spine Surgeon</option>
+  <option value="22">Surgery</option>
+  <option value="44">Surgical Cardiologist/Heart Surgeon</option>
+  <option value="47">Surgical Gastroenterologist</option>
+  <option value="41">Surgical Oncologist/Cancer Surgeon</option>
+  <option value="127">Thoracic Chest Surgeon</option>
+  <option value="118">Uro-Oncologist</option>
+  <option value="24">Urologist</option>
+  <option value="49">Urologist and Andrologist</option>
+  <option value="67">Vascular and Endovascular Surgeon</option>
+  <option value="72">Yoga Therapist</option>
+  </select>				  
+                    </div>
+                    
+                  </div>
+        <br><br><br>
+        <button type="button" id="btn">Sign in Now</button>
+        </div>
+      </div>
+    </form>
+    
+    </body>
+    </html>
+    
