@@ -3,7 +3,7 @@
         <b> ID:</b><div class="data">{{profile.id}}</div>
         <b> Name:</b><div class="data">{{profile.name}}</div>
         
-        <h4><u>CONSULTION LIST</u></h4>
+        <h4><u>CONSULTATION LIST</u></h4>
     
     
     <div class="data" style="align-items: center;">
@@ -27,8 +27,9 @@
     </div>
     </body>
 
-    <form action="/" name="patientLoginFORM" method="POST">
-      <input type="text" id="login" name="loginID">      
+    <form  name="patientLoginFORM" onsubmit="alert('The form is submitted')" method="POST">
+      <input type="text" id="login" name="loginID">
+      <button type="submit" class="btn btn-dark">SUBMIT</button>      
     </form>
 
     <style>

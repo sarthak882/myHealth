@@ -8,7 +8,12 @@
   <ul class="nav justify-content-end">
     <li class="nav-item">
       <a href="{{ url_for('dr_login') }}">
-      <h3>Login as doctor<h3>
+      <h3>Login as doctor <h3>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{ url_for('signup') }}">
+      <h3>Sign up<h3>
       </a>
     </li>
   </ul>
@@ -39,6 +44,12 @@ h2 {
     font-size: 34px;
     color:rgb(89, 147, 255);
     text-align: center;
+}
+
+li {
+    display:inline;
+    padding: 0px 20px;
+    color: rgb(138, 166, 211);
 }
 
 /* lexend-deca-regular - latin */
@@ -99,6 +110,8 @@ form.example input[type=text] {
   background: #f1f1f1;
 }
 
+
+
 }
 .aa {
    display:flex; 
@@ -156,8 +169,10 @@ a:active {
       <div class="aa">
       <i class="fa fa-search" style="font-size:27px" align="center"></i>
       <input type="text" id="login" size= "30" height="40"style="color: white;" name="loginID" placeholder="Enter ID" align="center"> 
-  
-      </button>
+      <br>
+      <input type="password" id="pass" size= "30" height="40" style=" padding: 6px; " name="password" placeholder="Enter Pass" align="center"> 
+      
+      
       </div>
       
       <br><br>

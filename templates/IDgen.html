@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello darkness my ol' fren</title>
+    <title>ID Created!</title>
 </head>
 
 <style>
@@ -13,12 +13,13 @@ body{
 }
 
 h1 {
-    font-weight: bold;
+    /* font-weight: bold; */
     font-size: 80px;
     font-family: lexend;
-    font-weight: 700;
+    font-weight: 600;
     color: red;
     text-align: center;
+    /* padding-top: 20px; */
 }
 
 h2 {
@@ -36,27 +37,50 @@ p {
     font-family: lexend;
 }
 
+a { 
+    color: inherit; 
+} 
+a:link {
+  color: inherit;
+}
+
+/* visited link */
+a:visited {
+  color: inherit;
+}
+
+/* mouse over link */
+a:hover {
+  color: inherit;
+}
+
+/* selected link */
+a:active {
+  color: inherit;
+}
+
 </style>
 
 <body>
-
     <h1>
-        Sorry!
+        <a href="/" style="text-decoration: none"><span class="my" style="color: white;">my</span>Health <br>
+            </a>
     </h1>
 
     <h2>
-        Please recheck your ID and password.
+        
+        Your ID is created! <br>
+        {{ID}}
         <br>
         <p>
-            Somewhere, something went wrong.
+
         </p> <br>
         <a href="/" style="color: dodgerblue; font-size: 80%;">
-        Back to login page
+        Proceed to login
         </a>
     </h2>
 
     <p>
-        {{ID}}
     </p>
 </body>
 </html>
