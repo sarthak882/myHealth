@@ -1,4 +1,5 @@
 # from cProfile import Profile
+from email import message
 import pprint
 from flask import Flask, render_template, jsonify, request
 import pymongoFlask
@@ -12,9 +13,8 @@ def index():
         print("In index POST")
         try:
             inputID = int(request.form['loginID'])
-            password = request.form['password']
             try:                
-                profile = pymongoFlask.patient(inputID, password)
+                profile = pymongoFlask.patient(inputID)
                 return render_template('profile.html', profile = profile)
             except:
                 print("Couldn't find patient")
@@ -52,40 +52,9 @@ def dr_login():
 
 @app.route('/pprofile',methods=['POST','GET'])
 def pprofile():
-
     id = request.args['id']
     print(id)
-    id = int(id)
-
-    if (request.method=='POST'):
-        add_record(id)
-
-    try:
-        profile = pymongoFlask.patientD(id)
-    except:
-        print("Couldn't find patient")
-        return render_template('404.html', ID=id)
-    print("Rendering Template")
-    return render_template('pprofile.html', profile = profile)
-
-@app.route('/signup',methods=['POST','GET'])
-def signup():
-    print("In sign up")
-    if request.method == 'POST':
-        print("In SignUp POST")
-        IDgen = pymongoFlask.createPatient(name=request.form['name'], age=request.form['age'], location=request.form['location'], bloodGroup=request.form['bloodGroup'])
-        return render_template('IDgen.html', ID = IDgen)
-    else:
-        print("Rendering Signup")
-        return render_template ('usersignup.html')
-        
-    
-def add_record(id):
-    print("Inside add_record() function")
-    rec = pymongoFlask.addRecord(ID=id, hospital=request.form['hospitalName'], category=request.form['category'], description=request.form['description'], drID=request.form['drID'])
-    print("New record added!")
-    print(rec)
-    pass
+    return jsonify(message = 'Patient '+id)
 
 if __name__ == '__main__':
     app.run(debug=True)

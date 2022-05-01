@@ -1,3 +1,4 @@
+import random
 from time import strftime
 from flask import Flask, jsonify, abort
 from flask_pymongo import PyMongo
@@ -52,14 +53,27 @@ def getDrName(_id):
     try:
         return doctors.find_one({"_id":_id})["name"]
     except:
-        #print(_id)
         return "Couldn't find"
 
-def createPatient(_id, name, age, location, bloodGroup):
-    # ID and Age must be INT32
-    # Check for ID must not be already existing
-    patients.insert_one({"_id": _id, "name": name, "age": age, "location": location, "bloodGroup": bloodGroup, "recordCount": 0})
+# def createPatient(_id, name, age, location, bloodGroup):
+#     # ID and Age must be INT32
+#     # Check for ID must not be already existing
+#     patients.insert_one({"_id": _id, "name": name, "age": age, "location": location, "bloodGroup": bloodGroup, "recordCount": 0})
 
+def createPatient(name, age, location, bloodGroup, password):
+    IDgen = random.randint(100, 999)
+    while patients.find_one({'_id':IDgen}) != None:
+        IDgen = random.randint(100, 999)
+
+    print(str(IDgen) + " inserting")
+    patients.insert_one({"_id": IDgen, "name": name, "age": age, "location": location, "bloodGroup": bloodGroup, "password": password, "recordCount": 0})
+    return IDgen
+
+# def ranGen():
+#     ranG = random.randint(880,885)
+#     while patients.find_one({'_id':ranG}) != None:
+#         ranG = random.randint(880, 885)
+#     return ranG
 
 def deletePatient(_id):
     # Delete reports
@@ -80,7 +94,44 @@ def patientsByDR(_id):
     
     return(patientss)
 
-def patient(_id):
+def patient(_id, passw):
+    profile = dict()
+    #ID, Name, Age, BloodGroup, Location, RecordCount, firstName, lastName, Records
+    profile['id'] = _id
+    try:
+        # print("Finding patient...")
+        p = findPatient(_id)
+        print("Found patient")
+        print("Checking pass...")
+        if(passw != p['password']):
+            print("Invalid password!!")
+            abort(404)
+        profile['age'] = p['age']
+        # print("Age")
+        profile['recordCount'] = p['recordCount']
+        profile['location'] = p['location']
+        profile['bloodGroup'] = p['bloodGroup']
+        profile['name'] = profile['firstName'] = p['name']
+        profile['lastName'] = ""
+        if ' ' in profile['name']:
+            profile['firstName'], profile['lastName'] = p['name'].split(None, 1)
+        
+        # print("Assigned variables to p")
+
+        try:
+            print("Looking for reports..")
+            profile['records'] = findReports(_id)
+        except:
+            profile['records'] = ""
+
+        print("Returning Patient")
+        # pprint(profile)
+        return(profile)
+    except:
+        print("EXCEPTION 404")
+        abort(404)
+
+def patientD(_id):
     profile = dict()
     #ID, Name, Age, BloodGroup, Location, RecordCount, firstName, lastName, Records
     profile['id'] = _id
@@ -131,25 +182,6 @@ def doctor(_id):
     except:
         print("ABORTING")
         abort(404)
-
-# <td> <a href="{{url_for('index', id= pat['_id'])}}"> {{pat['_id']}}</td>
-
-
-# profile = pymongoFlask.findPatient(inputID)
-# # print(profile)
-# firstName = profile['name']
-# lastName = ""
-# if ' ' in profile['name']:
-#     firstName, lastName = profile['name'].split(None, 1)
-
-# try:                
-#     records = pymongoFlask.findReports(inputID)            
-# except:
-#     records = ""
-# print("Found patient")
-# return render_template('profile.html', ID=inputID, age=profile['age'], name=profile['name'], location=profile['location'], 
-#                                         bloodGroup=profile['bloodGroup'], recordCount=profile['recordCount'],
-#                                         firstName=firstName, lastName=lastName, records=records)
 
 
 def main():
